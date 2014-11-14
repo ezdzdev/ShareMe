@@ -1,0 +1,79 @@
+* {
+  transition: 0.5s !important;
+  font-family: 'Droid Sans', sans-serif;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lobster', cursive;
+}
+
+input, select, textarea, button {
+  padding: 0px;
+  margin: 0px;
+  border: none;
+  &:focus {
+    outline: none;
+  }
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+#background {
+  width: 100%;
+  height: 100%;
+  background-image: url('mixtape.jpg');
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
+.search-wrapper {
+  position: relative;
+  top: 100px;
+  width: 500px;
+  height: 60px;
+  margin: auto;
+  border-radius: 10px;
+  background-color: #444;
+}
+
+#search-text {
+  width: 400px;
+  height: 40px;
+  padding-left: 10px;
+  margin: 10px 0 10px 10px;
+  font-size: 25px;
+  line-height: 25px;
+}
+
+#search-button {
+  float: right;
+  height: 40px;
+  margin: 10px 25px 10px 10px;
+  background: none;
+
+  i:active {
+    transition: none !important;
+    margin-top: 2px;
+  }
+
+  img {
+    height: 40px;
+  }
+
+  * {
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+  }
+}
