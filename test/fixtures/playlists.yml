@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_url: MyString
+  share_url: MyString
+  views: 1
+  responses: 
+
+two:
+  user_url: MyString
+  share_url: MyString
+  views: 1
+  responses: 
