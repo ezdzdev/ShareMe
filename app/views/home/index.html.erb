@@ -1,10 +1,13 @@
 <div id="background">
   <div class="search-wrapper">
-    <input id="search-text" placeholder="Youtube URL"/>
+    <form>
+    <input id="search-text" placeholder="Youtube URL, or search here"/>
     <button id="search-button">
       <i class="fa fa-search"></i>
       <img src="assets/spinner.gif" style="display:none;"/>
     </button>
+      </form>
   </div>
 </div>
+<%= stylesheet_link_tag 'home', 'data-turbolinks-track' => true %>
 <%= javascript_include_tag 'home', 'data-turbolinks-track' => true %>
