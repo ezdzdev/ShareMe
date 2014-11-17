@@ -1,2 +1,10 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
+$playlist = $('#playlist-container');
+$('.iframe-container').each(function(i) {
+  setTimeout(function() {
+    $container = $($playlist.children()[i]);
+    $container.show();
+    $container.addClass('animated fadeInLeft');
+  }, 1000*i);
+});
+
+

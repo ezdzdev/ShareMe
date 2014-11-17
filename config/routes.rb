@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   root 'home#index'
   post '/search' => 'home#search'
+  post '/playlist' => 'playlist#create'
+
+  # @DZ: to change playlist to have shareId and playlistId
+  # @DZ: dynamic route needs to stay at the bottom so the previous routes are still valid
+  get '/:hash' => 'playlist#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

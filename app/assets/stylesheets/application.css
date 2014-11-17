@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+#background {
+  width: 100%;
+  height: 100%;
+  background-image: url('mixtape.jpg');
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141114023751) do
+ActiveRecord::Schema.define(version: 20141116215245) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,23 +19,23 @@ ActiveRecord::Schema.define(version: 20141114023751) do
   create_table "playlist_tracks", force: true do |t|
     t.integer  "playlist_id"
     t.integer  "track_id"
-    t.integer  "track_number"
+    t.integer  "track_number", default: 1, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "playlists", force: true do |t|
-    t.string   "user_url",   null: false
-    t.string   "share_url",  null: false
+    t.string   "user_hash"
+    t.string   "share_hash"
     t.integer  "views"
     t.integer  "responses"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "saved",      default: false
   end
 
   create_table "tracks", force: true do |t|
-    t.string   "track_name", null: false
-    t.string   "track_url",  null: false
+    t.string   "track_vid",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -22,3 +22,5 @@ gem 'json'
 gem 'google-api-client'
 # OEmbed gem
 gem 'ruby-oembed'
+# Integer hashing gem
+gem 'hashids'

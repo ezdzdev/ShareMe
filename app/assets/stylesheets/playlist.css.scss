@@ -1,3 +1,47 @@
 // Place all the styles related to the playlist controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+#playlist-container {
+  position: relative;
+  width: 500px;
+  height: 90%;
+  overflow: scroll;
+  text-align: center;
+  top: 5%;
+  left: 5%;
+  float:left;
+}
+
+.iframe-container {
+  iframe {
+    margin: 5px auto;
+    display: block;
+  }
+}
+
+.text-container {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 300px;
+  height: 100px;
+  margin: 5%;
+  font-size: 20px;
+  background: #444;
+  box-shadow: 10px 10px 5px #000;
+
+  .text-field-container {
+    color: #fff;
+    padding-left: 25px;
+    padding-top: 2px;
+    display: block;
+
+    input {
+      font-size: 15px;
+      display: block;
+    }
+  }
+}

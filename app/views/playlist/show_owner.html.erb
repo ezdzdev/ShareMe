@@ -1,0 +1,17 @@
+<div id="playlist-container">
+  <% @rendered_tracks.each do |track| %>
+    <div class="iframe-container" style="display: none;">
+      <%= "#{track.html}".html_safe %>
+    </div>
+  <% end %>
+</div>
+
+<div class="text-container">
+  <div class="text-field-container">
+    Your Link:  <%= text_field_tag :user, "localhost:9000/#{@playlist.user_hash}" ,:name =>"User Link", :readonly => true %>
+  </div>
+  <div class="text-field-container">
+    Share Link: <%= text_field_tag :share, "localhost:9000/#{@playlist.share_hash}" ,:name =>"Share Link", :readonly => true %>
+  </div>
+</div>
+
