@@ -1,5 +1,7 @@
+//= require jquery
+
 $playlist = $('#playlist-container');
-$('.iframe-container').each(function(i) {
+$('.playlist-iframe-container').each(function(i) {
   setTimeout(function() {
     $container = $($playlist.children()[i]);
     $container.show();

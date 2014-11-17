@@ -1,15 +1,8 @@
 class Playlist < ActiveRecord::Base
-  # Schema Playlist
-  # t.string   "user_hash"
-  # t.string   "share_hash"
-  # t.integer  "views"
-  # t.integer  "responses"
-  # t.datetime "created_at"
-  # t.datetime "updated_at"
-  validates_uniqueness_of :user_hash, :share_hash, :if => :saved?
-
   has_many :playlist_tracks,            :dependent => :destroy
   has_many :tracks,                     :through => :playlist_tracks
+
+  validates_uniqueness_of :user_hash, :share_hash, :if => :saved?
 
   def saved?
     self.saved

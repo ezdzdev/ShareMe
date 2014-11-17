@@ -1,8 +1,8 @@
 class Track < ActiveRecord::Base
-
-  validates :track_vid, :uniqueness => true
   has_many :playlist_tracks, :dependent => :destroy
   has_many :playlists, :through => :playlist_tracks
+
+  validates :track_vid, :uniqueness => true
 
   class << self
     def find_or_create_track( vid )

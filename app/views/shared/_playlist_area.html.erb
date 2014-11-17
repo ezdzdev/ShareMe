@@ -1,6 +1,6 @@
 <div id="playlist-container">
   <% @rendered_tracks.each do |track| %>
-    <div class="iframe-container" style="display: none;">
+    <div class="playlist-iframe-container" style="display: none;">
       <%= "#{track.html}".html_safe %>
     </div>
   <% end %>

@@ -90,7 +90,8 @@ $('#search-button').click(function() {
   $.post(
       '/search', {
         q: $searchDiv.val(),
-        type: 'video'
+        type: 'video',
+        url: window.location.pathname
       }, function(json) {
         if (json.status == 'success') {
           renderResponse(json);
@@ -101,21 +102,20 @@ $('#search-button').click(function() {
   ).fail(function() {
     alert('Server error!');
   }).always(function() {
-    $buttonDiv.prop('disabled', false);
-    $buttonDiv.children().last().hide();
-    $buttonDiv.children().first().show();
+    // do nothing
   });
 });
 
 function create(caller) {
   $.post(
       '/playlist', {
-        url: $(caller).siblings().attr('src')
+        v_url: $(caller).siblings().attr('src'),
+        url: window.location.pathname
       }, function(json) {
         if (json.status == 'success') {
           document.location.href = json.user_hash;
         } else if (json.status == 'error') {
-          alert('Query error! ' + json.message);
+          alert(json.message);
         }
       }
   ).fail(function() {
@@ -126,7 +126,6 @@ function create(caller) {
 }
 
 function renderResponse( json ) {
-  $('#search-container').css('top','25px');
   $resultsDiv = $('#results-container');
   $resultsDiv.empty();
   $.each(json.results, function( index, item ) {
@@ -134,12 +133,14 @@ function renderResponse( json ) {
     $resultsDiv.append($container);
   });
   $resultsDiv.children().last().find('iframe').load(function () {
-    $resultsDiv.css({
-      'top': '35px',
-      'height': '85%'
-    });
     $resultsDiv.children().each(function(i) {
       setTimeout(function() {
+        if (i == 0) {
+          $buttonDiv = $('#search-button');
+          $buttonDiv.prop('disabled', false);
+          $buttonDiv.children().last().hide();
+          $buttonDiv.children().first().show();
+        }
         $child = $($resultsDiv.children()[i]);
         $child.show();
         $child.addClass('animated fadeInDown')
@@ -152,7 +153,7 @@ function createIframeContainer( html ) {
   html = html.replace(/width=\"\d+(px)?\"/i, "width=\"480\"");
   html = html.replace(/height=\"\d+(px)?\"/i, "height=\"270\"");
   return [
-    '<div class="iframe-container" style="display: none">',
+    '<div class="search-iframe-container" style="display: none">',
     html,
     '<i class="fa fa-arrow-circle-right" onclick="create(this)"></i>',
     '</div>'

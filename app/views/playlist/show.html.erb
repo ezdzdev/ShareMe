@@ -3,15 +3,31 @@
 <% if options[:display] == 'user' %>
   <div class="text-container">
     <div class="text-field-container">
-      Your Link:  <%= text_field_tag :user, "localhost:9000/#{@playlist.user_hash}" ,:name =>"User Link", :readonly => true %>
+      Mix Link:  <%= text_field_tag :user, "localhost:9000/#{@playlist.user_hash}" ,:name =>"User Link", :readonly => true %>
     </div>
     <div class="text-field-container">
       Share Link: <%= text_field_tag :share, "localhost:9000/#{@playlist.share_hash}" ,:name =>"Share Link", :readonly => true %>
     </div>
   </div>
 <% elsif options[:display] == 'share' %>
-  BITCH
+  <div id="shared-container">
+    <div id="prepend-text-container">
+      Contribute to this mix and see the whole thing! Or make your own <a href="/">here</a>
+    </div>
+    <%= render "shared/search_area" %>
+    <style>
+      /* Style hacks! */
+      #search-container{
+        top: 0px;
+      }
+      #results-container {
+        overflow: visible;
+      }
+      .iframe-container > i {
+        left: 100%;
+      }
+    </style>
+  </div>
 <% end %>
 <%= stylesheet_link_tag 'playlist' %>
 <%= javascript_include_tag 'playlist' %>
-

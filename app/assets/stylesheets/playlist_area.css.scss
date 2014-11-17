@@ -1,15 +1,12 @@
 #playlist-container {
   position: relative;
   width: 500px;
-  height: 90%;
+  margin: auto;
   overflow: scroll;
   text-align: center;
-  top: 5%;
-  left: 5%;
-  float:left;
 }
 
-.iframe-container {
+.playlist-iframe-container {
   iframe {
     margin: 5px auto;
     display: block;

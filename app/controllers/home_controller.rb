@@ -31,8 +31,8 @@ class HomeController < ApplicationController
                 :q => params['q'],
                 :type => params['type'],
                 :maxResults => 5
+                # :maxResults => params['url'] == '/' ? 5 : 1
                 # :order => 'viewCount',
-                # :maxResults => 25
             }
         )
         json_hash = JSON.parse(client_response.response.body)
