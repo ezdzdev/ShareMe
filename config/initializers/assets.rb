@@ -2,8 +2,12 @@
 
 # Version of your assets, change this if you want to expire all your assets.
 Rails.application.config.assets.version = '1.0'
-Rails.application.config.assets.precompile += %w( home.js home.css )
+# View specifics
 Rails.application.config.assets.precompile += %w( playlist.js playlist.css )
+# Partials
+Rails.application.config.assets.precompile += %w( search_area.js search_area.css )
+Rails.application.config.assets.precompile += %w( playlist_area.js playlist_area.css )
+# Externals
 Rails.application.config.assets.precompile += %w( animate.css )
 
 # Precompile additional assets.

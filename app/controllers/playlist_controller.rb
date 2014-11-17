@@ -17,22 +17,23 @@ class PlaylistController < ApplicationController
   end
 
   def show
+    options = {}
+    options[:display] = 'user'
     @playlist = Playlist.where(:user_hash => params[:hash]).last
 
+    # Try share link
     if @playlist.blank?
+      options[:display] = 'share'
       @playlist = Playlist.where(:share_hash => params[:hash]).last
-
-      if @playlist.blank?
-        raise ActionController::RoutingError.new('Not Found')
-      else
-        @tracks = @playlist.tracks.order('track_number ASC').all
-        @rendered_tracks = @tracks.map{ |t| render_embedded_from_vid(t.track_vid) }
-        render 'playlist/show_share'
-      end
-    else
-      @tracks = @playlist.tracks.order('track_number ASC').all
-      @rendered_tracks = @tracks.map{ |t| render_embedded_from_vid(t.track_vid) }
-      render 'playlist/show_owner'
     end
+
+    # 404
+    if @playlist.blank?
+      raise ActionController::RoutingError.new('Not Found')
+    end
+
+    @tracks = @playlist.tracks.order('track_number ASC').all
+    @rendered_tracks = @tracks.map{ |t| render_embedded_from_vid(t.track_vid) }
+    render 'playlist/show', :locals => {:options => options}
   end
 end

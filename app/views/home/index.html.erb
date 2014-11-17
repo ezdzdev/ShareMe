@@ -1,11 +1,1 @@
-<div id="search-container">
-  <input id="search-text" placeholder="Youtube URL, or search here"/>
-  <button id="search-button">
-    <i class="fa fa-search"></i>
-    <img src="assets/spinner.gif" style="display:none;"/>
-  </button>
-</div>
-<div id="results-container">
-</div>
-<%= stylesheet_link_tag 'home', 'data-turbolinks-track' => true %>
-<%= javascript_include_tag 'home', 'data-turbolinks-track' => true %>
+<%= render "shared/search_area" %>

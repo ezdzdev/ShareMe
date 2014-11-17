@@ -134,7 +134,10 @@ function renderResponse( json ) {
     $resultsDiv.append($container);
   });
   $resultsDiv.children().last().find('iframe').load(function () {
-    $resultsDiv.css('top','25px');
+    $resultsDiv.css({
+      'top': '35px',
+      'height': '85%'
+    });
     $resultsDiv.children().each(function(i) {
       setTimeout(function() {
         $child = $($resultsDiv.children()[i]);

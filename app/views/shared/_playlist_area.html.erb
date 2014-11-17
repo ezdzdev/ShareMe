@@ -1,0 +1,9 @@
+<div id="playlist-container">
+  <% @rendered_tracks.each do |track| %>
+    <div class="iframe-container" style="display: none;">
+      <%= "#{track.html}".html_safe %>
+    </div>
+  <% end %>
+</div>
+<%= stylesheet_link_tag 'playlist_area' %>
+<%= javascript_include_tag 'playlist_area' %>
