@@ -2,6 +2,14 @@
 
 <% if options[:display] == 'user' %>
   <div class="text-container">
+    <div id="controls-container">
+      <i id="controls-backwards" class="fa fa-backward"></i>
+      <i id="controls-play" class="fa fa-play"></i>
+      <i id="controls-forwards" class="fa fa-forward"></i>
+      <i id="controls-shuffle" class="fa fa-random"></i>
+      <i id="controls-repeat" class="fa fa-repeat"></i>
+    </div>
+
     <div class="text-field-container">
       Mix Link:  <%= text_field_tag :user, "localhost:9000/#{@playlist.user_hash}" ,:name =>"User Link", :readonly => true %>
     </div>

@@ -2,49 +2,70 @@
   position: fixed;
   bottom: 0px;
   right: 0px;
-  width: 300px;
-  height: 100px;
+  width: 270px;
+  height: 150px;
   margin: 5%;
   font-size: 20px;
   background: #444;
   box-shadow: 10px 10px 5px #000;
 
+  #controls-container {
+    padding: 10px 0px 10px 30px;
+
+    i {
+      margin: 0px 22px 0 0;
+      color: white;
+
+      &:hover {
+        color: #cc181e;
+      }
+    }
+
+    .active {
+      color: #cc181e !important;
+    }
+  }
+
   .text-field-container {
     color: #fff;
-    padding-left: 20px;
+    padding-left: 30px;
     padding-top: 2px;
     display: block;
 
     input {
       font-size: 15px;
       display: block;
+      width: 200px;
     }
   }
 }
 
 #shared-container {
   position: relative;
-  top: -25px;
+  top: 0px;
   width: 500px;
   height: 400px;
   margin: auto;
-}
 
-#prepend-text-container {
-  position: relative;
-  padding: 10px 20px 0px 10px;
-  font-size: 14px;
-  background: #444;
-  color: white;
+  #prepend-text-container {
+    position: relative;
+    padding: 10px 20px 0px 10px;
+    font-size: 14px;
+    background: #444;
+    color: white;
 
-  a {
-    color: #000;
-    font-weight: bold;
-    text-decoration: none;
-
-    &:hover {
-      color: #cc181e;
+    a {
+      color: #000;
+      font-weight: bold;
       text-decoration: none;
+
+      &:hover {
+        color: #cc181e;
+        text-decoration: none;
+      }
     }
   }
 }
+
+
+

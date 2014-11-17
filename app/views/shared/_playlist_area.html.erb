@@ -1,9 +1,10 @@
 <div id="playlist-container">
   <% @rendered_tracks.each do |track| %>
     <div class="playlist-iframe-container" style="display: none;">
-      <%= "#{track.html}".html_safe %>
+      <%= track.html.html_safe %>
     </div>
   <% end %>
 </div>
 <%= stylesheet_link_tag 'playlist_area' %>
 <%= javascript_include_tag 'playlist_area' %>
+<%= javascript_include_tag 'http://www.youtube.com/iframe_api' %>
