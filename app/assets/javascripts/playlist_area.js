@@ -50,11 +50,11 @@ $('#controls-repeat').click(function() {
 
 function shuffleStartingAtCurrentVideo() {
   // Copy over video list and swap current with first
-  $playlistShuffleVideos = $playlistVideos.splice();
+  $playlistShuffleVideos = [];
+  $playlistShuffleVideos = $.extend(true, [], $playlistVideos);
   $first = $playlistShuffleVideos[0];
   $playlistShuffleVideos[0] = $playlistCurrentArr;
   $playlistShuffleVideos[$playlistCurrentArr[0]] = $first;
-
 
   // Loop through rest of array [length..1] to randomize
   var currentIndex = $playlistShuffleVideos.length, temporaryValue, randomIndex ;
@@ -62,13 +62,13 @@ function shuffleStartingAtCurrentVideo() {
   // While there remain elements to shuffle...
   while (1 !== currentIndex) {
     // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
+    randomIndex = Math.floor(Math.random() * (currentIndex - 1)) + 1;
     currentIndex -= 1;
 
     // And swap it with the current element.
-    temporaryValue = $playlistCurrentArr[currentIndex];
-    $playlistCurrentArr[currentIndex] = $playlistCurrentArr[randomIndex];
-    $playlistCurrentArr[randomIndex] = temporaryValue;
+    temporaryValue = $playlistShuffleVideos[currentIndex];
+    $playlistShuffleVideos[currentIndex] = $playlistShuffleVideos[randomIndex];
+    $playlistShuffleVideos[randomIndex] = temporaryValue;
   }
 }
 
@@ -101,7 +101,11 @@ function onPlayerStateChange(event) {
       $('#controls-play').trigger('click');
     }
   } else if (event.data == YT.PlayerState.PLAYING) {
-    $playlistCurrentArr = findCurrentPlayer(event.data);
+    $newArr = findCurrentPlayer(event.data);
+    if ($playlistCurrentArr[0] != $newArr[0]) {
+      $playlistCurrentArr[1].pauseVideo();
+    }
+    $playlistCurrentArr = $newArr;
     if (!$playlistPlay) {
       $('#controls-play').trigger('click');
     }
@@ -126,10 +130,10 @@ function startPrevVideo(playerArr) {
   }
 
   // @DZ Add circular logic and prevent crash
-
-  var prevPlayer = ($playlistShuffle) ?
-      $playlistShuffleVideos[playerArr[0]-1][1] : $playlistVideos[playerArr[0]-1][1];
-  prevPlayer.playVideo();
+  $nextPlayerArr = ($playlistShuffle) ?
+      getVideoCircular('prev',$playlistShuffleVideos) :
+      getVideoCircular('prev',$playlistVideos)
+  $nextPlayerArr[1].playVideo();
 }
 
 function startNextVideo(playerArr) {
@@ -137,10 +141,31 @@ function startNextVideo(playerArr) {
   if (playerArr[1].getPlayerState() !== YT.PlayerState.ENDED) {
     currPlayer.pauseVideo();
   }
-
   // @DZ Add circular logic and prevent crash
-  var nextPlayer = ($playlistShuffle) ?
-      $playlistShuffleVideos[playerArr[0]+1][1] : $playlistVideos[playerArr[0]+1][1];
-  nextPlayer.playVideo();
+  $nextPlayerArr = ($playlistShuffle) ?
+      getVideoCircular('next',$playlistShuffleVideos) :
+      getVideoCircular('next',$playlistVideos)
+  $nextPlayerArr[1].playVideo();
 }
 
+function getVideoCircular(action, playlist) {
+  $currentIndex = $playlistCurrentArr[0];
+  $maxIndex = $playlistVideos.length;
+  $nextIndex = $currentIndex;
+  if (action == 'next') {
+    $nextIndex++;
+  } else if (action == 'prev') {
+    $nextIndex--;
+  } else {
+    return nil
+  }
+
+  if ($playlistRepeat) {
+    if ($nextIndex >= $maxIndex) {
+      $nextIndex = 0;
+    } else if ($nextIndex < 0) {
+      $nextIndex = $maxIndex - 1;
+    }
+  }
+  return playlist[$nextIndex]
+}
