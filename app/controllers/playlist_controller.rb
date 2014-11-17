@@ -20,7 +20,7 @@ class PlaylistController < ApplicationController
         pt = PlaylistTrack.new(
             :playlist_id => playlist.id,
             :track_id => track.id,
-            :track_num => num_of_tracks + 1
+            :track_number => num_of_tracks + 1
         )
         if pt.valid?
           pt.save!
