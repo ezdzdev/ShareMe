@@ -11,11 +11,11 @@
     </div>
 
     <div class="text-field-container">
-      Mix Link:  <%= text_field_tag :user, "http://somix.herokuapp.com/#{@playlist.user_hash}",
+      Mix Link:  <%= text_field_tag :user, "somix.herokuapp.com/#{@playlist.user_hash}",
                                     :name =>"User Link", :readonly => true %>
     </div>
     <div class="text-field-container">
-      Share Link: <%= text_field_tag :share, "http://somix.herokuapp.com/#{@playlist.share_hash}",
+      Share Link: <%= text_field_tag :share, "somix.herokuapp.com/#{@playlist.share_hash}",
                                      :name =>"Share Link", :readonly => true %>
     </div>
   </div>
