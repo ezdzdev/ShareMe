@@ -27,7 +27,7 @@ html, body {
   position: fixed;
   width: 100%;
   height: 100%;
-  background-image: url('mixtape.jpg');
+  background-image: asset-url('mixtape.jpg', image);
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
