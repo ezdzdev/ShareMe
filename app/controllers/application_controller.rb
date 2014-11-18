@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def render_embedded_response( url )
-    require 'Oembed'
+    require 'oembed'
     begin
       OEmbed::Providers::Youtube.get(url)
     rescue
