@@ -67,15 +67,9 @@ class PlaylistController < ApplicationController
     @tracks = @playlist.tracks.
         order('track_number ASC').
         first(options[:track_count])
-    @rendered_tracks = @tracks.map do |t|
-      oembed = render_embedded_from_vid(t.track_vid)
-      if oembed.blank?
-        t.destroy
-        next
-      else
-        oembed
-      end
-    end
+    @rendered_tracks = @tracks.map{
+      |t| render_embedded_from_vid(t.track_vid)
+    }.compact
 
     # Analytics
     if options[:display] == 'share'
