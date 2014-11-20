@@ -24,3 +24,5 @@ gem 'google-api-client'
 gem 'ruby-oembed'
 # Integer hashing gem
 gem 'hashids'
+# Heroku Gem
+gem 'rails_12factor', group: :production
