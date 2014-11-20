@@ -1,1 +1,26 @@
 <%= render "shared/search_area" %>
+
+<style>
+  #notice {
+    position: relative;
+    margin: auto;
+    top: 10%;
+    color: #fff;
+    background-color: #444;
+    box-shadow: 10px 10px 5px #000;
+    width: 50%;
+    padding: 16px;
+    text-align: center;
+    display: block;
+    font-size: 20px;
+  }
+
+</style>
+<div id="notice" class="animated fadeInLeft">
+  Search for a song or paste in a youtube link as a seed for your personal mixtape!
+</div>
+<script>
+  $('#search-text').click(function() {
+    $('#notice').addClass('fadeOutRight');
+  });
+</script>
