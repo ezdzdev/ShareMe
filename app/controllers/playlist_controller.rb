@@ -24,6 +24,9 @@ class PlaylistController < ApplicationController
         )
         if pt.valid?
           pt.save!
+          playlist.response ||= 0
+          playlist.response += 1
+          playlist.save!
         else
           status = 'error'
           message = 'The playlist already has this track!'
@@ -60,6 +63,7 @@ class PlaylistController < ApplicationController
       raise ActionController::RoutingError.new('Not Found')
     end
 
+    # Render response
     @tracks = @playlist.tracks.
         order('track_number ASC').
         first(options[:track_count])
@@ -71,6 +75,12 @@ class PlaylistController < ApplicationController
       else
         oembed
       end
+    end
+
+    # Analytics
+    if options[:display] == 'share'
+      @playlist.views ||= 0
+      @playlist.views += 1
     end
 
     render 'playlist/show',
